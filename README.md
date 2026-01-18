@@ -31,7 +31,6 @@ npm install @xiaowei1906/opencode-beep
 编辑 OpenCode 配置文件：
 
 - Windows：`%USERPROFILE%\.config\opencode\opencode.json`
-- Linux/macOS：`~/.config/opencode/opencode.json`
 
 加入：
 
@@ -47,10 +46,10 @@ npm install @xiaowei1906/opencode-beep
 
 插件按优先级读取配置（项目配置优先于全局配置）：
 
-- 全局配置：`~/.config/opencode/beep.jsonc` 或 `~/.config/opencode/beep.json`
-- 项目配置：`<project>/.opencode/beep.jsonc` 或 `<project>/.opencode/beep.json`
+- 全局配置：`%USERPROFILE%\.config\opencode\beep.jsonc` 或 `%USERPROFILE%\.config\opencode\beep.json`
+- 项目配置：`<project>\.opencode\beep.jsonc` 或 `<project>\.opencode\beep.json`
 
-也支持通过环境变量 `OPENCODE_CONFIG_DIR` 指定“全局配置目录”。
+也支持通过环境变量 `OPENCODE_CONFIG_DIR` 指定“全局配置目录”（Windows 路径）。
 
 仓库内包含示例配置文件 `beep.jsonc`。
 
@@ -122,7 +121,7 @@ npm install @xiaowei1906/opencode-beep
   - 尝试把 `soundFile` 换成系统自带 wav（如 `C:\\Windows\\Media\\Windows Notify.wav`）
 - 不确定是否启用成功：
   - 检查 `opencode.json` 是否已配置 `"plugin": ["@xiaowei1906/opencode-beep"]`
-  - 确认安装目录是否在 `~/.config/opencode/`（Windows 对应 `%USERPROFILE%\.config\opencode`）
+  - 确认安装目录是否在 `%USERPROFILE%\.config\opencode`
 
 ## 开发
 

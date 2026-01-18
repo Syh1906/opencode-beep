@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - "v*"
+      - "V*"
 
 permissions:
   contents: write
@@ -13,10 +14,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
+      - name: Build release metadata
+        shell: bash
+        run: |
+          tag="${GITHUB_REF_NAME}"
+          version="${tag#[vV]}"
+          release_name="V${version}"
+          prev_tag="$(git describe --tags --abbrev=0 "${tag}^" 2>/dev/null || true)"
+          if [ -z "${prev_tag}" ]; then
+            range="v${version}...v${version}"
+          else
+            prev_version="${prev_tag#[vV]}"
+            range="v${prev_version}...v${version}"
+          fi
+          echo "RELEASE_NAME=${release_name}" >> "${GITHUB_ENV}"
+          echo "CHANGELOG_LINE=Full Changelog: ${range}" >> "${GITHUB_ENV}"
       - name: Publish to npm
         run: npm publish --access public
         env:
@@ -24,4 +42,6 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          generate_release_notes: true
+          name: ${{ env.RELEASE_NAME }}
+          body: ${{ env.CHANGELOG_LINE }}
+          tag_name: ${{ github.ref_name }}
