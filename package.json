@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "@xiaowei1906/opencode-beep",
+  "version": "0.1.0",
+  "description": "OpenCode Windows plugin that plays notification sounds on key events",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "license": "MIT",
+  "author": "xiaowei1906",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Syh1906/opencode-beep.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Syh1906/opencode-beep/issues"
+  },
+  "homepage": "https://github.com/Syh1906/opencode-beep#readme",
+  "os": ["win32"],
+  "keywords": ["opencode", "opencode-plugin", "plugin", "beep", "sound", "windows"],
+  "files": ["index.js", "README.md", "LICENSE", "beep.jsonc"],
+  "peerDependencies": {
+    "@opencode-ai/plugin": ">=1.1.0"
+  },
+  "dependencies": {
+    "jsonc-parser": "^3.3.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "opencode plugin dev"
+  }
+}

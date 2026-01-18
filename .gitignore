@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# OpenCode local dev/sandbox
+.opencode/
+
+# Build artifacts / packages
+dist/
+*.tgz
+
+# Logs
+logs/
+*.log
+
+# Lockfiles (remove if you want to commit them)
+bun.lock
+bun.lockb
+package-lock.json
+pnpm-lock.yaml
+
+# Env files
+.env
+.env.*.local
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

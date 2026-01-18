@@ -1,0 +1,42 @@
+{
+  // Master switch for the plugin
+  "enabled": true,
+  // Default sound file for all events (override per event below)
+  "soundFile": "C:\\Windows\\Media\\Windows Notify.wav",
+  // Default repeat count for all events (min 1)
+  "repeat": 1,
+  // Global throttle window in milliseconds
+  "throttleMs": 2000,
+  // Show debug toast in TUI
+  "debugToast": false,
+  // Per-event overrides
+  "events": {
+    // Session becomes idle after busy/retry
+    "sessionIdle": {
+      // Enable/disable this event
+      "enabled": true,
+      // Override sound file for this event
+      "soundFile": "C:\\Windows\\Media\\Windows Notify.wav",
+      // Override repeat count for this event
+      "repeat": 1
+    },
+    // Permission prompt shown to user
+    "permissionAsked": {
+      // Enable/disable this event
+      "enabled": true,
+      // Override sound file for this event
+      "soundFile": "C:\\Windows\\Media\\Windows Notify.wav",
+      // Override repeat count for this event
+      "repeat": 1
+    },
+    // Question prompt shown to user
+    "questionAsked": {
+      // Enable/disable this event
+      "enabled": true,
+      // Override sound file for this event
+      "soundFile": "C:\\Windows\\Media\\Windows Notify.wav",
+      // Override repeat count for this event
+      "repeat": 1
+    }
+  }
+}
