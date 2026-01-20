@@ -18,13 +18,28 @@
     "url": "https://github.com/Syh1906/opencode-beep/issues"
   },
   "homepage": "https://github.com/Syh1906/opencode-beep#readme",
-  "os": ["win32"],
-  "keywords": ["opencode", "opencode-plugin", "plugin", "beep", "sound", "windows"],
-  "files": ["index.js", "README.md", "LICENSE", "beep.jsonc"],
+  "os": [
+    "win32"
+  ],
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "plugin",
+    "beep",
+    "sound",
+    "windows"
+  ],
+  "files": [
+    "index.js",
+    "README.md",
+    "LICENSE",
+    "beep.jsonc"
+  ],
   "peerDependencies": {
     "@opencode-ai/plugin": ">=1.1.0"
   },
   "dependencies": {
+    "@tarquinen/opencode-dcp": "^1.2.4",
     "jsonc-parser": "^3.3.1"
   },
   "publishConfig": {

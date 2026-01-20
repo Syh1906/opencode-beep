@@ -24,6 +24,9 @@
     "permissionAsked": {
       // Enable/disable this event
       "enabled": true,
+      // Only beep for interactive prompts (not for passive notification toasts)
+      // Supported sources: "permission.ask" | "permission.asked"
+      "sources": ["permission.ask", "permission.asked"],
       // Override sound file for this event
       "soundFile": "C:\\Windows\\Media\\Windows Notify.wav",
       // Override repeat count for this event
@@ -33,6 +36,9 @@
     "questionAsked": {
       // Enable/disable this event
       "enabled": true,
+      // Only beep when a question requires user interaction
+      // Supported sources: "question tool" | "question.asked"
+      "sources": ["question tool"],
       // Override sound file for this event
       "soundFile": "C:\\Windows\\Media\\Windows Notify.wav",
       // Override repeat count for this event

@@ -61,12 +61,19 @@ npm install @xiaowei1906/opencode-beep
 - `throttleMs`：全局节流窗口（毫秒），在窗口内重复触发会被抑制
 - `debugToast`：是否在 TUI 里显示调试 toast（排障用）
 - `events`：分事件覆盖（每个事件支持 `true/false` 或对象）
+  - `events.<key>.sources`：可选，来源过滤（仅匹配指定 `source` 时才播放；不填则不做过滤）
 
 支持的事件键：
 
 - `sessionIdle`：会话从 `busy/retry` 切到 `idle` 时触发
 - `permissionAsked`：出现权限询问提示时触发
 - `questionAsked`：出现提问/确认提示时触发
+
+来源（`source`）说明（用于 `events.<key>.sources`）：
+
+- `sessionIdle`：`session.status` | `session.idle`
+- `permissionAsked`：`permission.asked`（纯通知/提示） | `permission.ask`（需要你选择/确认）
+- `questionAsked`：`question.asked`（纯通知/提示） | `question tool`（需要你回答）
 
 ### 示例 `beep.jsonc`
 
@@ -95,10 +102,16 @@ npm install @xiaowei1906/opencode-beep
       "repeat": 1
     },
     "permissionAsked": {
-      "enabled": true
+      "enabled": true,
+      // Only beep for interactive prompts (not for passive notification toasts)
+      // Supported sources: "permission.ask" | "permission.asked"
+      "sources": ["permission.ask"]
     },
     "questionAsked": {
-      "enabled": true
+      "enabled": true,
+      // Only beep when a question requires user interaction
+      // Supported sources: "question tool" | "question.asked"
+      "sources": ["question tool"]
     }
   }
 }

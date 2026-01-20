@@ -130,6 +130,7 @@ function normalizeEventValue(value, fallbackEnabled) {
       enabled: value.enabled ?? fallbackEnabled,
       soundFile: typeof value.soundFile === "string" ? value.soundFile : undefined,
       repeat: typeof value.repeat === "number" ? value.repeat : undefined,
+      sources: Array.isArray(value.sources) ? value.sources.filter((source) => typeof source === "string") : undefined,
     };
   }
   return { enabled: fallbackEnabled };
@@ -148,6 +149,9 @@ function mergeEventConfig(baseValue, overrideValue, fallbackEnabled) {
       enabled: overrideValue.enabled ?? baseNormalized.enabled,
       soundFile: typeof overrideValue.soundFile === "string" ? overrideValue.soundFile : baseNormalized.soundFile,
       repeat: typeof overrideValue.repeat === "number" ? overrideValue.repeat : baseNormalized.repeat,
+      sources: Array.isArray(overrideValue.sources)
+        ? overrideValue.sources.filter((source) => typeof source === "string")
+        : baseNormalized.sources,
     };
   }
   return baseNormalized;
@@ -277,6 +281,7 @@ function resolveEventSettings(config, eventKey) {
     enabled: eventConfig.enabled !== false,
     soundFile,
     repeat,
+    sources: eventConfig.sources,
   };
 }
 
@@ -308,6 +313,9 @@ const plugin = async (ctx) => {
     }
     const settings = resolveEventSettings(config, eventKey);
     if (!settings.enabled) {
+      return;
+    }
+    if (Array.isArray(settings.sources) && !settings.sources.includes(details?.source)) {
       return;
     }
     const { allowed, remainingMs } = allowBeep(config.throttleMs);
